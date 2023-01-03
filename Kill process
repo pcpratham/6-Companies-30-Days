@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        vector<int> copy = nums;
+
+        sort(nums.begin(),nums.end());
+        int smallerIndex = 0 , bigIndex = nums.size()-1;
+        while(smallerIndex < nums.size() && nums[smallerIndex]==copy[smallerIndex]){
+            smallerIndex++;
+        }
+        
+        while(bigIndex > 0 && nums[bigIndex]==copy[bigIndex]){
+            bigIndex--;
+        }
+        if(bigIndex<0 || smallerIndex > nums.size()-1){
+            return 0;
+        }
+        return bigIndex - smallerIndex + 1;
+    }
+};
+
+//TC O(n)
+//SC O(1)
